@@ -1,0 +1,85 @@
+# Program: LAB Assignment 4 - Free Frozen Yogurt
+# This program displays a menu to the user with the options process purchase
+# or shut down. The program asks the user for an input and checks if it is a
+# valid input. When the user's input is in the correct format, the program
+# checks if the user has 12 or greater stamps and offers the user a free
+# yogurt. If the user says no or does not have enough stamps, the program
+# executes the regular transaction, asking for how much yogurt the user wants
+# and then adding stamps to the total. If the user wants free yogurt,
+# 12 stamps are subtracted from their total and then the program displays
+# the remaining number of stamps.
+
+# Initialize max stamps for free yogurt
+STAMPS_MAX = 12
+
+# For formatting
+INDENT = "   "
+
+# Initialize accumulator variables
+your_choice = 0 # Purchase or Shut Down user input (P or S)
+stamps_total = 0 # total stamps to track if free yogurt
+yogurts_purchased = 0 # number of yogurts purchased
+free_yogurt_choice = 0 # Y or N input for getting the free yogurt
+program_on = True # Turns program on for while loop at the start
+regular_transaction = True # Set regular transaction code
+
+# Keep program running until user inputs shut down (S or s)
+while program_on:
+
+    # Display program instructions
+    print("\nMenu:")
+    print( INDENT + "P (process Purchase)")
+    print( INDENT + "S (Shut down)" + "\n")
+
+    # Get user input
+    your_choice = input("Enter your choice: ")
+
+    # Checks if the user input is invalid
+    if your_choice == "":
+        print(" *** Use P or S, please. *** " + "\n")
+
+    # Checks invalid input
+    elif (your_choice[0] != "P" and your_choice[0] != "p" and your_choice[0] \
+          != "S" and your_choice[0] != "s"):
+        print(" *** Use P or S, please. *** ")
+
+    # Purchase choice is executed, user input (P or p)
+    elif your_choice[0] == "P" or your_choice[0] == "p":
+        regular_transaction = True # reset regular transaction
+
+        # Check for free yogurt and ask user what to do
+        if stamps_total >= STAMPS_MAX:
+            free_yogurt_choice = input( "You qualify for a free yogurt. " \
+                "Would you like to use your credits? (Y or N) ")
+
+            # Check for correct input for free yogurt
+            if (free_yogurt_choice != "N" and free_yogurt_choice \
+                != "n" and free_yogurt_choice != "Y" and \
+                free_yogurt_choice != "y"):
+                print (" *** Use Y or N please. *** " + "\n")
+                # Skip regular transaction code
+                regular_transaction = False
+
+            # Award transaction, deduct 12 stamps for free yogurt
+            elif free_yogurt_choice == "Y" or free_yogurt_choice == "y":
+                stamps_total = stamps_total - STAMPS_MAX
+                print("You just earned a free yogurt and have " + \
+                    str(stamps_total) + " stamps remaining.")
+                # Skip regular transaction code
+                regular_transaction = False
+
+        # Regular transaction, error input check, collect stamps
+        if (regular_transaction == True):
+            yogurts_purchased = int( \
+            input("How many yogurts would you like? "))
+            if yogurts_purchased < 1:
+                print(" *** Invalid # yogurts. *** ")
+            else:
+                stamps_total = yogurts_purchased + stamps_total
+                print("You just earned " + str(yogurts_purchased) + \
+                " stamps and have a total of " + str(stamps_total) + " to use.")
+
+    # Check if user inputs shut down S or s
+    elif your_choice[0] == "S" or your_choice[0] == "s":
+        print("Shutting down...Have a great day!")
+        program_on = False
