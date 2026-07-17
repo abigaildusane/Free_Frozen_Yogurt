@@ -1,4 +1,4 @@
-Program: LAB Assignment 4 - Free Frozen Yogurt
+Program: Free Frozen Yogurt
 This program displays a menu to the user with the options process purchase
 or shut down. The program asks the user for an input and checks if it is a
 valid input. When the user's input is in the correct format, the program
