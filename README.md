@@ -1,5 +1,5 @@
 Program: Free Frozen Yogurt
-This program displays a menu to the user with the options process purchase
+This program displays a menu to the user with the options to process a purchase
 or shut down. The program asks the user for an input and checks if it is a
 valid input. When the user's input is in the correct format, the program
 checks if the user has 12 or greater stamps and offers the user a free
